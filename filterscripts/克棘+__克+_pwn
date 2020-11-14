@@ -1,0 +1,102 @@
+#include <a_samp>
+
+#define COLOR_WHITE        0xFFFFFFAA
+
+new bohum[MAX_PLAYERS];
+
+forward bo(playerid);
+
+public OnPlayerCommandText(playerid, cmdtext[])
+{
+	if(strcmp(cmdtext, "/보험도움말", true) == 0)
+	{
+	    ShowPlayerDialog(playerid, 5555, DIALOG_STYLE_MSGBOX," + 보험 도움말","/보험가입 - 보험에 가입합니다.\n/보험탈퇴 - 보험에서 탈퇴합니다.\n\n보험에 가입되어 있으면 사망 할 때 마다 $10000000 (천만원) 을 받습니다.\n가입비는 $260000 입니다.\n보험료는 5분마다 걷으며, 요금은 $35000 입니다.", "확인","취소");
+		return 1;
+	}
+
+	if(strcmp(cmdtext, "/가입상태", true) == 0)
+	{
+		if(bohum[playerid] == 1)
+		{
+		    SendClientMessage(playerid, 0xFFFFFFAA," + 당신은 현제 보험에 가입 되어 있습니다.");
+		}
+			else
+		{
+			SendClientMessage(playerid, 0xFFFFFFAA," + 당신은 현제 보험에 가입 되어있지 않습니다.");
+		}
+		return 1;
+	}
+
+	if(strcmp(cmdtext, "/보험가입", true) == 0)
+	{
+		if (GetPlayerMoney(playerid) > 259999) // 돈이 259999 만큼 있는 경우
+		{
+			if(bohum[playerid] == 0)
+			{
+				bohum[playerid] = 1;
+				SendClientMessage(playerid, 0xFFFFFFAA," + 보험에 가입 되었습니다");
+				GivePlayerMoney(playerid, -260000);
+				SetTimerEx("joinbh",300000,true,"ii",playerid);
+			}
+				else
+			{
+				SendClientMessage(playerid, 0xFFFFFFAA," + 이미 가입되어 있습니다.");
+			}
+		}
+			else
+		{
+			SendClientMessage(playerid, 0xFFFFFFAA," + 돈이 부족합니다.");
+		}
+		return 1;
+	}
+
+	if(strcmp(cmdtext, "/보험탈퇴", true) == 0)
+	{
+		if(bohum[playerid] == 1)
+		{
+			bohum[playerid] = 0;
+			SendClientMessage(playerid, 0xFFFFFFAA," + 탈퇴 하였습니다 $1000000 (백만원) 을 돌려 드립니다");
+			GivePlayerMoney(playerid, 1000000);
+		}
+			else
+		{
+			SendClientMessage(playerid, 0xFFFFFFAA," + 보험에 가입되어 있지 않습니다.");
+		}
+		return 1;
+	}
+	return 0;
+}
+
+public OnPlayerDeath(playerid, killerid, reason) // 플레 이어 가 죽은 경우
+{
+	if(bohum[playerid] == 1)
+	{
+		SendClientMessage(playerid, COLOR_WHITE," + 보험에 가입 되어 있으므로 상해보험금 $10000000 (천만원) 을 받았습니다.");
+		GivePlayerMoney(playerid, 10000000);
+		new name[MAX_PLAYER_NAME];
+		new string[256];
+		GetPlayerName(playerid, name, sizeof(name));
+		format(string, sizeof(string), " + [알림] %s 님께서 보험금을 받으셨습니다. 계속해서 보험금을 받아내는 경우 처벌 됩니다 ", name);
+		format(string, sizeof(string), " + /kill 등등 자살을 계속 해서 보험금을 받는경우 영구밴 됩니다");
+	// 	SendClientMessage(!IsPlayerAdmin(playerid),0xFFFF00AA, string); // 어드민에게만
+	}
+	return 1;
+}
+
+public bo(playerid)
+{
+	if(bohum[playerid] == 1)
+	{
+		if (GetPlayerMoney(playerid) > 34999)
+		{
+			SendClientMessage(playerid,COLOR_WHITE," + 보험비로 $35000 을 지불했습니다.");
+			GivePlayerMoney(playerid,-35000);
+		}
+			else
+		{
+			SendClientMessage(playerid,COLOR_WHITE," + 보험비가 부족해 내지 못하여 자동으로 보험탈퇴 되었습니다.");
+			bohum[playerid] = 0;
+		}
+	}
+	return 1;
+}

@@ -1,0 +1,115 @@
+#include <a_samp>
+
+#pragma tabsize 0
+forward EL1UP();//이걸 넣는게 중요
+forward EL1DOWN();//셋타이머 할때 쓰는
+forward GATE1UP();//꼭넣으셔야되요
+new EL1;//무브옵젝할때필요한
+new GATE1;//이건다아실듯
+
+#define COLOR_GREY 0xAFAFAFAA
+#define COLOR_PURPLE 0xC2A2DAAA
+#define COLOR_WHITE 0xFFFFFFAA
+#define COLOR_DBLUE 0x2641FEAA
+#define COLOR_BLUE 0x33AAFFFF
+#define COLOR_GREEN 0x33AA33AA
+#define COLOR_ORANGE 0xFF9900AA
+#define COLOR_PINK 0xFF69B4FF
+#define COLOR_BGREEN 0x08FD04FF
+#define COLOR_CYAN 0x00FFFFAA
+#define COLOR_RED 0xFF3366FF
+#define COLOR_YELLOW 0xFFCC33FF
+#define COLOR_DGREEN 0x008000FF
+#define COLOR_DRED 0x800000FF
+#define COLOR_DARK 0x000000FF// 어차피뭐 색상은 안쓰니 패스
+
+#define Filterscript
+#if defined FILTERSCRIPT
+
+public OnFilterScriptInit()
+{
+	print("\n--------------------------------------");
+	print(" 무브오브젝트 무한반복 BY Ghost_Gamer");
+	print("--------------------------------------\n");
+	return 1;
+}
+
+public OnFilterScriptExit()
+{
+	return 1;
+}
+
+#else
+
+main()
+{
+	print("\n----------------------------------");
+	print(" Blank Gamemode by your name here");
+	print("----------------------------------\n");
+}
+
+#endif
+
+public OnGameModeInit()
+{
+CreateObject(971,-1897.245,-2685.115,56.545,0.0,0.0,0.0);
+CreateObject(971,-1895.563,-2693.611,56.639,0.0,0.0,0.0);
+CreateObject(971,-1900.832,-2689.415,56.674,0.0,0.0,-77.349);
+GATE1 = CreateObject(971,-1891.979,-2689.252,56.633,0.0,0.0,103.132);//옵젝묶기
+EL1 = CreateObject(971,-1896.525,-2689.194,53.319,90.241,0.0,12.892);//요것도
+	return 1;
+}
+
+public OnGameModeExit()
+{
+	return 1;
+}
+
+public OnPlayerCommandText(playerid, cmdtext[])
+{
+	  if (strcmp(cmdtext, "/bg1", true)==0)//엘베 올리기 내리기 무한반복시작
+	  {
+      MoveObject(EL1,-1896.462,-2689.083,107.468, 4);
+      SetTimer("EL1DOWN", 10000, 0);
+      return 1;
+      }
+      if (strcmp(cmdtext, "/bg1stop", true)==0)//엘베 올리기 내리기 무한반복정지
+	  {
+      StopObject(EL1);
+      return 1;
+      }
+      if (strcmp(cmdtext, "/bg1stop2", true)==0)//엘베 올리기 내리기 무한반복정지하고원래대로
+	  {
+      MoveObject(EL1,-1896.525,-2689.194,53.319, 4);
+      return 1;
+      }
+   	  if (strcmp(cmdtext, "/gt1", true)==0)//게이트내리기
+	  {
+      MoveObject(GATE1,-1892.004,-2689.255,49.303, 4);
+      SetTimer("GATE1UP", 10000, 0);//이것으로 자동으로 문올리기
+      return 1;
+      }
+      if (strcmp("/bgtp", cmdtext, true) == 0)//텔레포트  이동하기
+	  {
+	  SetPlayerPos(playerid,-1896.525,-2689.194,53.319);
+	  return 1;
+}
+	return 0;
+}
+public EL1DOWN()
+{
+      MoveObject(EL1,-1896.525,-2689.194,53.319, 4);
+      SetTimer("EL1UP", 10000, 0);//이것을 이용해서 무브옵젝무한반복
+return 1;
+}
+public EL1UP()
+{
+      MoveObject(EL1,-1896.462,-2689.083,107.468, 4);
+      SetTimer("EL1DOWN", 10000, 0);//이것을 이용해서 무브옵젝무한반복
+return 1;
+}
+public GATE1UP()
+{
+      MoveObject(GATE1,-1891.979,-2689.252,56.633, 4);//게이트
+return 1;
+}

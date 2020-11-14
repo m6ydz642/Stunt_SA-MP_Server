@@ -1,0 +1,354 @@
+/*
+                                                        IsPlayerInArea Maker - By Seif
+*/
+/*x---------------------------------Important-------------------------------------x*/
+//**INCLUDES**//
+#include <a_samp>
+//**PRAGMAS**//
+#pragma tabsize 0
+//**MISC**//
+
+/*x---------------------------------Defining-------------------------------------x*/
+//**COLORS*//
+#define GREEN                   0x21DD00FF
+#define RED                     0xE60000FF
+#define ADMIN_RED               0xFB0000FF
+#define YELLOW                  0xFFFF00FF
+#define ORANGE                  0xF97804FF
+#define LIGHTRED                0xFF8080FF
+#define LIGHTBLUE               0x00C2ECFF
+#define PURPLE                  0xB360FDFF
+#define PLAYER_COLOR    0xFFFFFFFF
+#define BLUE                    0x1229FAFF
+#define LIGHTGREEN              0x38FF06FF
+#define DARKPINK                0xE100E1FF
+#define DARKGREEN               0x008040FF
+#define ANNOUNCEMENT    0x6AF7E1FF
+#define COLOR_SYSTEM    0xEFEFF7AA
+#define GREY                    0xCECECEFF
+#define PINK                    0xD52DFFFF
+#define DARKGREY        0x626262FF
+#define AQUAGREEN       0x03D687FF
+#define NICESKY                 0x99FFFFAA
+#define WHITE                   0xFFFFFFFF
+//**MISC**//
+#define MAX_AREAS       100         // Maximum areas creatable by default. Edit it if you wishto increase/decrease limit.
+//**VARIABLES**//
+enum aInfo
+{
+        Float:aMin_X,
+        Float:aMin_Y,
+        Float:aMax_X,
+        Float:aMax_Y,
+}
+new AreaInfo[MAX_AREAS][aInfo];
+new Menu:zone;
+new AreaAvailability[MAX_AREAS] = 1;
+new LastArea[MAX_PLAYERS];
+// **FORWARDS** //
+
+/*x---------------------------------CallBacks-------------------------------------x*/
+public OnFilterScriptInit()
+{
+    zone = CreateMenu("Area Maker", 0, 20, 120, 150, 400);
+        AddMenuItem(zone, 0, "Minimum");
+    AddMenuItem(zone, 0, "Maximum");
+
+    print("<|-----------------------------------------|>");
+        print("  .:[ - IsPlayerInArea Maker by Seif - ]:.");
+        print("<|-----------------------------------------|>");
+        return 1;
+}
+
+public OnFilterScriptExit()
+{
+        DestroyMenu(zone);
+        return 1;
+}
+
+public OnPlayerConnect(playerid)
+{
+        return 1;
+}
+
+public OnPlayerDisconnect(playerid, reason)
+{
+        LastArea[playerid] = -1;
+        return 1;
+}
+
+public OnPlayerSpawn(playerid)
+{
+        return 1;
+}
+
+public OnPlayerDeath(playerid, killerid, reason)
+{
+        return 1;
+}
+
+public OnVehicleSpawn(vehicleid)
+{
+        return 1;
+}
+
+public OnVehicleDeath(vehicleid, killerid)
+{
+        return 1;
+}
+
+public OnPlayerText(playerid, text[])
+{
+        return 1;
+}
+
+public OnPlayerPrivmsg(playerid, recieverid, text[])
+{
+        return 1;
+}
+
+public OnPlayerCommandText(playerid, cmdtext[])
+{
+    new cmd[128], idx, tmp[128];
+        cmd = strtok(cmdtext, idx);
+
+        if (!strcmp("/area", cmd, true))
+        {
+                tmp = strtok(cmdtext, idx);
+                if (!strlen(tmp)) return SendClientMessage(playerid, ORANGE, "USAGE: /area [create/destroy/save]");
+
+                if (!strcmp("create", tmp, true))
+                {
+                    SetPlayerFacingAngle(playerid, 0);
+                    SetCameraBehindPlayer(playerid);
+                    TogglePlayerControllable(playerid, false);
+                    ShowMenuForPlayer(zone, playerid);
+                }
+                else if (!strcmp("destroy", tmp, true))
+                {
+                    if (IsPlayerInAnArea(playerid))
+                    {
+                        for(new i; i < MAX_AREAS; i++)
+                                {
+                                    if (!AreaAvailability[i])
+                                    {
+                                        if (IsPlayerInArea(playerid, AreaInfo[i][aMax_X], AreaInfo[i][aMin_X], AreaInfo[i][aMax_Y], AreaInfo[i][aMin_Y]))
+                                        {
+                                            DestroyArea(i);
+                                            SendClientMessage(playerid, GREEN, "Area erased!");
+                                            return 1;
+                                        }
+                                    }
+                                }
+                    }
+                    else SendClientMessage(playerid, RED, "You must be at the zone you want to destroy!");
+                }
+                else if (!strcmp("save", tmp, true))
+                {
+                    if (IsPlayerInAnArea(playerid))
+                    {
+                        tmp = msgstrtok(cmdtext, idx);
+                                if (!strlen(tmp)) return SendClientMessage(playerid, RED, "You must enter a comment!");
+
+                                new areaid = -1;
+                                if (!fexist("AreaCoords.pwn"))
+                                {
+                                    print("file doesn't exist");
+                                        new File:newfile = fopen("AreaCoords.pwn", io_write);
+                                        if (newfile)
+                                        {
+                                            print("made new file");
+                                                fwrite(newfile, " ");
+                                                fclose(newfile);
+                                        }
+                                }
+                                print("file now exists");
+                                new File:areafile = fopen("AreaCoords.pwn", io_append);
+                                if (areafile)
+                                {
+                                    print("opening file");
+                                    for(new i; i < MAX_AREAS; i++)
+                                        {
+                                            if (!AreaAvailability[i])
+                                            {
+                                                if (IsPlayerInArea(playerid, AreaInfo[i][aMax_X], AreaInfo[i][aMin_X], AreaInfo[i][aMax_Y], AreaInfo[i][aMin_Y]))
+                                                {
+                                                    areaid = i;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        if (areaid == -1)
+                                        {
+                                            SendClientMessage(playerid, RED, "You're not in a created area!");
+                                            fclose(areafile);
+                                        }
+                                        print("saving...");
+                                    new string[256];
+                                    format(string, sizeof string, "// IsPlayerInArea Maker by Seif -- '%s' //\nIsPlayerInArea(playerid, %f, %f, %f, %f)\n%f, %f, %f, %f\n", tmp, AreaInfo[areaid][aMax_X], AreaInfo[areaid][aMin_X], AreaInfo[areaid][aMax_Y], AreaInfo[areaid][aMin_Y], AreaInfo[areaid][aMax_X], AreaInfo[areaid][aMin_X], AreaInfo[areaid][aMax_Y], AreaInfo[areaid][aMin_Y]);
+                    print("saving...(2)");
+                                        fwrite(areafile, string);
+                                        print("saving...(3)");
+                                        fclose(areafile);
+                    print("saving...(4)");
+                                        SendClientMessage(playerid, LIGHTGREEN, "Area coordinates saved in /scriptfiles/AreaCoords.pwn !");
+                                }
+                    }
+                    else SendClientMessage(playerid, RED, "You must be at the area you want to save(make sure you created it first!)");
+                }
+                return 1;
+        }
+
+        if (!strcmp("/isplayerinarea", cmd, true))
+        {
+            tmp = strtok(cmdtext, idx);
+            if (!strlen(tmp)) return 1;
+            new Float:MaxX = floatstr(tmp);
+
+            tmp = strtok(cmdtext, idx);
+            if (!strlen(tmp)) return 1;
+            new Float:MinX = floatstr(tmp);
+
+                tmp = strtok(cmdtext, idx);
+            if (!strlen(tmp)) return 1;
+            new Float:MaxY = floatstr(tmp);
+
+            tmp = strtok(cmdtext, idx);
+            if (!strlen(tmp)) return 1;
+            new Float:MinY = floatstr(tmp);
+
+            if (IsPlayerInArea(playerid, MaxX, MinX, MaxY, MinY)) SendClientMessage(playerid, LIGHTGREEN, "You are in the area");
+            else SendClientMessage(playerid, RED, "You are not in the area");
+
+            return 1;
+        }
+        return 0;
+}
+
+public OnPlayerSelectedMenuRow(playerid, row)
+{
+        new Menu:menu = GetPlayerMenu(playerid);
+        if (menu == zone)
+        {
+            HideMenuForPlayer(menu, playerid);
+            switch (row)
+            {
+                case 0: // Minimum
+                {
+                    new areaid;
+                                if (!LastArea[playerid]) areaid = LastArea[playerid];
+                                else areaid = FindAreaID();
+                    new Float:X,Float:Y,Float:Z;
+                    GetPlayerPos(playerid, X, Y, Z);
+                    AreaInfo[areaid][aMin_X] = X;
+                    AreaInfo[areaid][aMin_Y] = Y;
+                    if (LastArea[playerid] == -1) LastArea[playerid] = areaid;
+                    else LastArea[playerid] = -1;
+                    OnPlayerExitedMenu(playerid);
+                    AreaAvailability[areaid] = 0;
+                    SendClientMessage(playerid, GREEN, "Minimum X and Y created");
+                }
+                case 1: // Maximum
+                {
+                    new areaid;
+                                if (!LastArea[playerid]) areaid = LastArea[playerid];
+                                else areaid = FindAreaID();
+                    new Float:X,Float:Y,Float:Z;
+                    GetPlayerPos(playerid, X, Y, Z);
+                    AreaInfo[areaid][aMax_X] = X;
+                    AreaInfo[areaid][aMax_Y] = Y;
+                    if (LastArea[playerid] == -1) LastArea[playerid] = areaid;
+                    else LastArea[playerid] = -1;
+                    OnPlayerExitedMenu(playerid);
+                    AreaAvailability[areaid] = 0;
+                    SendClientMessage(playerid, GREEN, "Maximum X and Y created");
+                }
+            }
+        }
+        return 1;
+}
+
+public OnPlayerExitedMenu(playerid)
+{
+    TogglePlayerControllable(playerid, true);
+        return 1;
+}
+
+stock strtok(const string[], &index)
+{
+        new length = strlen(string);
+        while ((index < length) && (string[index] <= ' '))
+        {
+                index++;
+        }
+
+        new offset = index;
+        new result[128];
+        while ((index < length) && (string[index] > ' ') && ((index - offset) < (sizeof(result) - 1)))
+        {
+                result[index - offset] = string[index];
+                index++;
+        }
+        result[index - offset] = EOS;
+        return result;
+}
+
+stock msgstrtok(const string[], &idx)
+{
+    new length = strlen(string);
+        while ((idx < length) && (string[idx] <= ' '))
+        {
+                idx++;
+        }
+        new offset = idx;
+        new result[128];
+        while ((idx < length) && ((idx - offset) < (sizeof(result) - 1)))
+        {
+                result[idx - offset] = string[idx];
+                idx++;
+        }
+        result[idx - offset] = EOS;
+        return result;
+}
+
+stock FindAreaID()
+{
+        for(new i; i < MAX_AREAS; i++)
+        {
+            if (AreaAvailability[i]) return i;
+        }
+        return 0;
+}
+
+stock IsPlayerInAnArea(playerid)
+{
+        for(new i; i < MAX_AREAS; i++)
+        {
+            if (!AreaAvailability[i])
+            {
+                if (IsPlayerInArea(playerid, AreaInfo[i][aMax_X], AreaInfo[i][aMin_X], AreaInfo[i][aMax_Y], AreaInfo[i][aMin_Y]))
+                {
+                    return 1;
+                }
+            }
+        }
+        return 0;
+}
+
+stock IsPlayerInArea(playerid, Float:max_x, Float:min_x, Float:max_y, Float:min_y)
+{
+        new Float:X, Float:Y, Float:Z;
+        GetPlayerPos(playerid, X, Y, Z);
+        if(X <= max_x && X >= min_x && Y <= max_y && Y >= min_y) return 1;
+        return 0;
+}
+
+stock DestroyArea(areaid)
+{
+    AreaInfo[areaid][aMax_X] = 0.0;
+    AreaInfo[areaid][aMax_Y] = 0.0;
+    AreaInfo[areaid][aMin_X] = 0.0;
+    AreaInfo[areaid][aMin_Y] = 0.0;
+    AreaAvailability[areaid] = 0;
+}
+

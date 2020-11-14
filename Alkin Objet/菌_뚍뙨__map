@@ -1,0 +1,192 @@
+
+<map mod="race" version="1.0">
+
+  <meta/>
+
+  <object name="object">
+    <position>-126.242088 2257.570801 28.559076</position>
+    <rotation>0.785398 -1.589999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (1)">
+    <position>-126.739479 2257.442871 28.578197</position>
+    <rotation>-0.785398 -1.589999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (2)">
+    <position>-126.925812 2258.271240 28.627523</position>
+    <rotation>-2.356194 -1.589999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (3)">
+    <position>-125.990639 2258.209961 28.501465</position>
+    <rotation>-3.926990 -1.589999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (4)">
+    <position>-114.136993 2260.221680 39.486557</position>
+    <rotation>-1.767145 0.000000 0.000000</rotation>
+    <model>987</model>
+  </object>
+
+  <object name="object (5)">
+    <position>-119.279068 2268.374756 38.131104</position>
+    <rotation>-0.981747 0.000000 0.000000</rotation>
+    <model>987</model>
+  </object>
+
+  <object name="object (6)">
+    <position>-128.777252 2266.942139 36.278934</position>
+    <rotation>0.196350 0.000000 0.000000</rotation>
+    <model>987</model>
+  </object>
+
+  <object name="object (7)">
+    <position>-128.601501 2266.489014 36.288368</position>
+    <rotation>-2.159844 0.000000 0.000000</rotation>
+    <model>987</model>
+  </object>
+
+  <object name="object (8)">
+    <position>-134.581573 2259.713379 30.318436</position>
+    <rotation>-5.497787 0.000000 0.000000</rotation>
+    <model>987</model>
+  </object>
+
+  <object name="object (9)">
+    <position>-135.687531 2248.409424 32.150826</position>
+    <rotation>-4.908738 0.000000 0.000000</rotation>
+    <model>987</model>
+  </object>
+
+  <object name="object (10)">
+    <position>-129.253479 2238.625488 31.273384</position>
+    <rotation>-4.123338 0.000000 0.000000</rotation>
+    <model>987</model>
+  </object>
+
+  <object name="object (11)">
+    <position>-124.284729 2242.353760 32.080078</position>
+    <rotation>-3.141593 0.000000 0.000000</rotation>
+    <model>1491</model>
+  </object>
+
+  <object name="object (12)">
+    <position>-126.022881 2241.962402 31.996571</position>
+    <rotation>-2.748891 0.000000 0.000000</rotation>
+    <model>987</model>
+  </object>
+
+  <object name="object (19)">
+    <position>-123.680504 2241.097656 35.160965</position>
+    <rotation>-2.748891 0.000000 1.499999</rotation>
+    <model>987</model>
+  </object>
+
+  <object name="object (25)">
+    <position>-128.171906 2251.549561 28.830475</position>
+    <rotation>-0.785398 0.000000 0.000000</rotation>
+    <model>1660</model>
+  </object>
+
+  <object name="object (26)">
+    <position>-132.222992 2259.017090 27.881168</position>
+    <rotation>-2.356194 0.000000 0.000000</rotation>
+    <model>1660</model>
+  </object>
+
+  <object name="object (27)">
+    <position>-126.552383 2262.802979 29.206184</position>
+    <rotation>-3.926991 0.000000 0.000000</rotation>
+    <model>1660</model>
+  </object>
+
+  <object name="object (28)">
+    <position>-123.332748 2260.366211 30.471962</position>
+    <rotation>-5.301438 0.000000 0.000000</rotation>
+    <model>1660</model>
+  </object>
+
+  <object name="object (29)">
+    <position>-115.931992 2247.935059 43.452358</position>
+    <rotation>-2.356194 0.000000 0.000000</rotation>
+    <model>987</model>
+  </object>
+
+  <object name="object (35)">
+    <position>-123.126961 2240.927734 44.405926</position>
+    <rotation>-2.748893 -1.514999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (36)">
+    <position>-123.975273 2241.104492 44.172684</position>
+    <rotation>-3.337942 -1.514999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (37)">
+    <position>-124.743225 2241.626953 42.247517</position>
+    <rotation>-3.730641 -1.514999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (38)">
+    <position>-124.746262 2241.619629 44.215206</position>
+    <rotation>-4.516040 -1.514999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (39)">
+    <position>-123.708870 2242.790039 41.035202</position>
+    <rotation>0.000000 0.000000 -1.574999</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (40)">
+    <position>-123.583740 2244.677734 41.017693</position>
+    <rotation>0.000000 0.000000 -1.574999</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (41)">
+    <position>-123.481171 2246.163330 41.099277</position>
+    <rotation>0.000000 0.000000 -1.574999</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (42)">
+    <position>-125.448021 2243.228271 44.217175</position>
+    <rotation>-0.981747 -1.514999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (43)">
+    <position>-125.743881 2243.922119 43.587334</position>
+    <rotation>-1.178097 -1.514999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (44)">
+    <position>-126.329414 2244.983154 43.339741</position>
+    <rotation>-1.374446 -1.514999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (45)">
+    <position>-126.471718 2246.362549 43.421505</position>
+    <rotation>-1.374446 -1.514999 0.000000</rotation>
+    <model>991</model>
+  </object>
+
+  <object name="object (46)">
+    <position>-123.928780 2242.186523 42.245167</position>
+    <rotation>-0.392699 0.000000 -1.574999</rotation>
+    <model>991</model>
+  </object>
+
+</map>

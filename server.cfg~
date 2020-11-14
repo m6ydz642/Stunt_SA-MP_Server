@@ -1,0 +1,25 @@
+echo Executing Server Config...
+lanmode 1
+rcon_password wnsduddlsmsaodncjswoek
+// 준영이는매우천재다
+maxplayers 50
+port 7777
+// hostname ■■■[Merry Christmas] HJ 스턴트■■■+:
+// hostname ■■■[Happy New year] HJ 스턴트■■■+:
+// hostname ■■■[HJ Stunt Server]HJ 스턴트■■■+:
+//hostname [HJ 서버 종료] 그동안 감사 했습니다
+//hostname ■■■[HJ free Server]HJ 자유서버■■■+:
+hostname INfernus - Free - Stunt 서버 공사,업뎃중
+gamemode0 infernus
+filterscripts Rcon stunt MidoStream stunts InCam BadRcon shmalplan bigplan bombjump Fuel userel moneyhack
+announce 1
+query 1
+weburl cafe.daum.net/HJstngf
+plugins badrcon
+//mapname Stunt,free Server
+// mapname Merry Christmas
+// mapname 새학기 출발 ♧
+mapname 즐거운 여름방학♧
+// mapname 방학 끝 ㅠㅠ
+// mapname ♧크리스마스
+password hjserver

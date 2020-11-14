@@ -1,0 +1,90 @@
+#include <a_samp>
+new cmd[100];
+#define COLOR_YELLOW 0xFFFF00AA
+#define COLOR_RED 0xFF0000AA
+
+public OnPlayerCommandText(playerid, cmdtext[])
+{
+if(IsPlayerAdmin(playerid) == 1)
+
+{
+
+//어드민이라면 쓸수있게 해주는 스크립트
+
+if(strcmp(cmd, "/at-h", true) == 0) {
+
+// 역시 대화창에 어드민이 /at-h 라고 입력하면 이벤트가 발동함
+  SendClientMessage(playerid,COLOR_YELLOW," 나를 제외한 모든 사람 소환!");
+  new Float:x;
+  new Float:y;
+  new Float:z;
+
+// Float가 붙은 이유는 장소나 HP는 저것을 붙여야 위치변수로 활용됩니다.
+  new Float:plus;
+
+// 플레이어 겹치기 방지용으로 0.005씩 추가해서 겹치기를 막습니다.
+  plus = 0.01;
+
+// 초기 플러스 대입
+  GetPlayerPos(playerid,x,y,z);
+
+//어드민의 장소를 알아냄
+  if (z <= 130)
+
+/* z 가 130보다 작을때만 발동(대부분의 건물은 130pt위에 있기때문에 건물안에서 쓰는것을 막음
+
+그리고 너무 높은곳에서쓰면 플레이어들이 모조리죽으니. */
+  {
+   for(new i=0; i<MAX_PLAYERS; i++)
+
+// 모든플레이어에게 반복
+   {
+      if (i == playerid)
+
+// i라는 변수가 어드민의 아이디이면 생략한다.
+       {
+       }
+    else
+
+// i라는변수가 어드민이 아니면 발동한다.
+    {
+     x += plus;
+     y += plus;
+
+// x,y 좌표에 플러스를 함(y 나 x 를빼면 일렬로 늘어설수도있음 z-)
+     SetPlayerPos(i,x,y,z);
+
+// i 플레이어에게 xyz좌표로 이동
+     SetPlayerInterior(i,0);
+
+// 건물에 있었으면 캄캄하니 0으로 바꿔줌.
+     SendClientMessage(i,COLOR_YELLOW," 운영진이 당신을 소환하셨습니다.(전체소환)");
+
+// 메세지는 띄워줘야죠
+     plus += 0.005;
+
+// 마지막으로 플러스변수를 0.005 늘린다.
+       }
+   }
+  }
+  else
+  {
+      SendClientMessage(playerid,COLOR_YELLOW," 너무높이 있습니다.");
+  }
+
+// 너무 높을경우 발동되는 이벤트
+ return 1;
+   }
+
+}
+
+else
+
+{
+
+SendClientMessage(playerid,COLOR_RED," 당신은 어드민이 아닙니다.");
+
+}
+
+	return 0;
+}

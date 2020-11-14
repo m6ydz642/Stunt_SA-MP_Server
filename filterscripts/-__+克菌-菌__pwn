@@ -1,0 +1,200 @@
+#include <a_samp>
+
+// This is a comment
+// uncomment the line below if you want to write a filterscript
+//#define FILTERSCRIPT
+#define COLOR_YELLOW              0xFFFF00AA
+#define COLOR_WHITE               0xFFFFFFAA
+#define COLOR_VIOLET              0x8F698FFF
+#define COLOR_GREEN               0x33AA33AA
+
+#pragma tabsize 0 //워링217 막는함수
+#if defined FILTERSCRIPT
+
+public OnFilterScriptInit()
+{
+	print("\n--------------------------------------");
+	print(" Blank Filterscript by your name here");
+	print("--------------------------------------\n");
+	return 1;
+}
+
+public OnFilterScriptExit()
+{
+	return 1;
+}
+
+#else
+
+main()
+{
+	print("\n----------------------------------");
+	print(" Blank Gamemode by your name here");
+	print("----------------------------------\n");
+}
+
+#endif
+
+public OnGameModeInit()
+{
+	// Don't use these lines if it's a filterscript
+	//SetGameModeText("Blank Script");
+	AddPlayerClass(0, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
+	
+	CreateObject(971,96.691,1920.960,20.762,0.0,0.0,-90.000);
+	CreateObject(980,213.749,1875.896,13.814,0.0,0.0,-180.000);
+	CreateObject(974,238.405,1872.380,9.889,0.0,0.0,-90.000);
+	CreateObject(971,255.984,1845.083,11.295,0.0,0.0,-90.000);
+	CreateObject(985,248.238,1842.107,9.468,0.0,0.0,0.0);
+	CreateObject(980,233.774,1823.292,8.662,0.0,0.0,-90.000);
+	CreateObject(980,297.665,1858.518,9.520,0.0,0.0,0.0);
+	CreateObject(971,247.728,1806.181,10.025,0.0,0.0,0.0);
+	CreateObject(4874,226.631,1883.833,20.305,0.0,0.0,-180.000);
+	CreateObject(972,261.979,1877.704,19.502,0.0,0.0,0.0);
+	CreateObject(972,250.871,1870.787,19.490,0.0,0.0,-90.000);
+	CreateObject(972,232.929,1870.788,19.420,0.0,0.0,-90.000);
+	CreateObject(972,255.052,1900.491,19.770,0.0,0.0,-270.000);
+	CreateObject(972,237.054,1900.478,19.770,0.0,0.0,-270.000);
+	CreateObject(972,226.009,1893.507,19.749,0.0,0.0,-180.000);
+	CreateObject(969,265.313,1900.374,18.402,0.0,-91.100,-90.859);
+	CreateObject(969,265.341,1899.453,18.382,0.0,-90.241,-90.000);
+	CreateObject(969,265.260,1890.139,18.099,0.0,-90.241,-90.000);
+	CreateObject(969,222.561,1867.559,17.974,0.0,-89.381,-90.000);
+	CreateObject(969,222.632,1876.022,18.324,0.0,-89.381,-90.000);
+
+	return 1;
+}
+
+public OnGameModeExit()
+{
+	return 1;
+}
+
+public OnPlayerRequestClass(playerid, classid)
+{
+	SetPlayerPos(playerid, 1958.3783, 1343.1572, 15.3746);
+	SetPlayerCameraPos(playerid, 1958.3783, 1343.1572, 15.3746);
+	SetPlayerCameraLookAt(playerid, 1958.3783, 1343.1572, 15.3746);
+	return 1;
+}
+
+public OnPlayerRequestSpawn(playerid)
+{
+	return 1;
+}
+
+public OnPlayerConnect(playerid)
+{
+	return 1;
+}
+
+public OnPlayerDisconnect(playerid, reason)
+{
+	return 1;
+}
+
+public OnPlayerSpawn(playerid)
+{
+	return 1;
+}
+
+public OnPlayerDeath(playerid, killerid, reason)
+{
+	return 1;
+}
+
+public OnVehicleSpawn(vehicleid)
+{
+	return 1;
+}
+
+public OnVehicleDeath(vehicleid, killerid)
+{
+	return 1;
+}
+
+public OnPlayerText(playerid, text[])
+{
+	return 1;
+}
+
+public OnPlayerPrivmsg(playerid, recieverid, text[])
+{
+	return 1;
+}
+
+public OnPlayerCommandText(playerid, cmdtext[])
+{
+	return 0;
+}
+
+public OnPlayerInfoChange(playerid)
+{
+	return 1;
+}
+
+public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
+{
+	return 1;
+}
+
+public OnPlayerExitVehicle(playerid, vehicleid)
+{
+	return 1;
+}
+
+public OnPlayerStateChange(playerid, newstate, oldstate)
+{
+	return 1;
+}
+
+public OnPlayerEnterCheckpoint(playerid)
+{
+	return 1;
+}
+
+public OnPlayerLeaveCheckpoint(playerid)
+{
+	return 1;
+}
+
+public OnPlayerEnterRaceCheckpoint(playerid)
+{
+	return 1;
+}
+
+public OnPlayerLeaveRaceCheckpoint(playerid)
+{
+	return 1;
+}
+
+public OnRconCommand(cmd[])
+{
+	return 1;
+}
+
+public OnObjectMoved(objectid)
+{
+	return 1;
+}
+
+public OnPlayerObjectMoved(playerid, objectid)
+{
+	return 1;
+}
+
+public OnPlayerPickUpPickup(playerid, pickupid)
+{
+	return 1;
+}
+
+public OnPlayerSelectedMenuRow(playerid, row)
+{
+	return 1;
+}
+
+public OnPlayerExitedMenu(playerid)
+{
+	return 1;
+}
+

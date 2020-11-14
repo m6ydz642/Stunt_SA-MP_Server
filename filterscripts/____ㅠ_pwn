@@ -1,0 +1,221 @@
+#include <a_samp>
+#pragma tabsize 0 //워링217 막는함수
+// This is a comment
+// uncomment the line below if you want to write a filterscript
+//#define FILTERSCRIPT
+#define COLOR_YELLOW              0xFFFF00AA
+#if defined FILTERSCRIPT
+
+public OnFilterScriptInit()
+{
+	print("\n--------------------------------------");
+	print(" ");
+	print("--------------------------------------\n");
+	return 1;
+}
+
+public OnFilterScriptExit()
+{
+	return 1;
+}
+
+#else
+
+main()
+{
+	print("\n----------------------------------");
+	print(" ");
+	print("----------------------------------\n");
+}
+
+#endif
+
+public OnGameModeInit()
+{
+	// Don't use these lines if it's a filterscript
+	//SetGameModeText("Blank Script");
+//	AddPlayerClass(0, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
+	return 1;
+}
+
+public OnGameModeExit()
+{
+	return 1;
+}
+
+public OnPlayerConnect(playerid) //플레이어 접속여부
+{
+new str[256];
+format(str, sizeof(str), " +  + 2010년 2월 5일 금요일 까지 모든 소유 차량을 팔아 주시길 바랍니다 [/carlist]) ");
+SendClientMessageToAll(COLOR_YELLOW, str);
+printf(" + 안내 말씀 확인 ");
+return 1;
+}
+public OnPlayerCommandText(playerid, cmdtext[])
+{
+/*
+	if (strcmp("/콜", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 어디서 감히 콜질이냐 나의 필살기를 받아라!");
+        SendClientMessage(playerid, COLOR_YELLOW, " + 뿅뿅뿅뿅뿅뿅뿅뿅");
+		return 1;
+	}
+	
+	if (strcmp("/콜1", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 콜은 이제 막힌거다");
+		return 1;
+	}
+	
+	if (strcmp("/리붓", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 마음대로 리붓은 꼬마준우가 허용을 안해요");
+		return 1;
+	}
+	
+	if (strcmp("/fuelcars", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 꼬마준우가 그명령어를 허용 안한답니다");
+		return 1;
+	}
+	
+		if (strcmp("/veh", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 꼬마준우가 그명령어를 허용 안한답니다");
+		return 1;
+	}
+	
+		if (strcmp("/차량소환", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 꼬마준우가 그명령어를 허용 안한답니다");
+		return 1;
+	}
+
+	    if (strcmp("/차소환", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 그명령어는 사용할수없는 명령어입니다");
+		return 1;
+	}
+	
+		 if (strcmp("/spawncar", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 그명령어는 사용할수없는 명령어입니다");
+		return 1;
+	}
+	
+ 		 if (strcmp("/stat", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 그명령어는 사용할수없는 명령어입니다");
+		return 1;
+	}
+	
+ 	     if (strcmp("/상태", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 그명령어는 사용할수없는 명령어입니다");
+		return 1;
+	}
+	
+ 		 if (strcmp("/makecash", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 그명령어는 사용할수없는 명령어입니다");
+		return 1;
+	}
+
+         if (strcmp("/돈주기", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 그명령어는 사용할수없는 명령어입니다");
+		return 1;
+	}
+	
+         if (strcmp("/setcash", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 그명령어는 사용할수없는 명령어입니다");
+		return 1;
+	}
+	
+	     if (strcmp("/돈설정", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 그명령어는 사용할수없는 명령어입니다");
+		return 1;
+	}
+	
+ 		 if (strcmp("/말", cmdtext, true, 10) == 0)
+	{
+        SendClientMessage(playerid, COLOR_YELLOW, " + 쓰지마 시발아");
+		return 1;
+	}
+*/
+
+	return 0;
+}
+
+public OnPlayerInfoChange(playerid)
+{
+	return 1;
+}
+
+public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
+{
+	return 1;
+}
+
+public OnPlayerExitVehicle(playerid, vehicleid)
+{
+	return 1;
+}
+
+public OnPlayerStateChange(playerid, newstate, oldstate)
+{
+	return 1;
+}
+
+public OnPlayerEnterCheckpoint(playerid)
+{
+	return 1;
+}
+
+public OnPlayerLeaveCheckpoint(playerid)
+{
+	return 1;
+}
+
+public OnPlayerEnterRaceCheckpoint(playerid)
+{
+	return 1;
+}
+
+public OnPlayerLeaveRaceCheckpoint(playerid)
+{
+	return 1;
+}
+
+public OnRconCommand(cmd[])
+{
+	return 1;
+}
+
+public OnObjectMoved(objectid)
+{
+	return 1;
+}
+
+public OnPlayerObjectMoved(playerid, objectid)
+{
+	return 1;
+}
+
+public OnPlayerPickUpPickup(playerid, pickupid)
+{
+	return 1;
+}
+
+public OnPlayerSelectedMenuRow(playerid, row)
+{
+	return 1;
+}
+
+public OnPlayerExitedMenu(playerid)
+{
+	return 1;
+}
+

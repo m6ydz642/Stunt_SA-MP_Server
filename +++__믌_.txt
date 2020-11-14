@@ -1,0 +1,132 @@
+SetSpawnInfo(playerid,0,0,1958.33,1343.12,15.36,269.15,26,36,28,150,0,0);//
+
+SpawnPlayer(playerid); // 이거는 플레이어를 강제로 스폰시키는함수입니다
+
+SetPlayerPos(playerid,1.1,1.1,1.1); // 1.1,1.1,1.1이라는 좌표로 플레이어를 텔포시킨다.
+
+SetPlayerPosFindZ(playerid, 1567.0, 1252.0, 80.0); //
+
+GetPlayerPos(playerid,X,Y,Z); // 
+
+SetPlayerFacingAngle(playerid,290.0); // 이거는 플레이어가 바라보는 각도를 조절하는 함수입니다
+
+GetPlayerFacingAngle(playerid,angel); // 
+
+SetPlayerInterior(playerid,0); // 이거는 플레이어의 인테리어코드를 바꿀때 쓰는함수입니다.
+
+GetPlayerInterior(playerid); // 
+
+SetPlayerHealth(playerid,0); // 이거는 플레이어의 체력을 변경하는 함수입니다
+
+GetPlayerHealth(playerid,health); // 
+
+SetPlayerArmour(playerid,1000); // 플레이어의 아머(체력위에 하얀색게이지)를 변경하는 함수입니다
+
+GetPlayerArmour(playerid,armour); // 
+
+SetPlayerAmmo(playerid,3,1000); // 플레이어의 총알을 주는함수인데 3이 무기슬롯번호, 1000이 총알수입니다
+
+GetPlayerAmmo(playerid); // 
+
+SetPlayerTeam(playerid,1); // 팀끼리 체력이 안닮는 팀킬방지함수에 많이 쓰입니다! 
+
+GetPlayerTeam(playerid); // 
+
+SetPlayerScore(playerid,5); // 플레이어의 스코어를 변경하는함수
+
+GetPlayerScore(playerid); // 
+
+SetPlayerColor(playerid,0xAA3333AA); // 플레이어의 색깔을 변경하는함수
+
+GetPlayerColor(playerid); // 
+
+SetPlayerSkin(playerid,265); // 플레이어의 스킨(캐릭터)를 바꾸는 함수
+
+GetPlayerSkin(playerid); // 
+
+GivePlayerWeapon(playerid,34,999999); // 플레이어에게 무기를 주는함수 34번은 무기코드 999999는 총알수
+
+ResetPlayerWeapons(playerid); // 현재 플레이어가 들고있는 모든무기를 없애는함수
+
+GetPlayerWeaponData(playerid,3,34,99999); // 
+
+GivePlayerMoney(playerid,100); // 플레이어에게 돈을 주는 함수
+
+ResetPlayerMoney(playerid); // 플레이어의 돈을 몽땅 없애는 함수 (예: 9999 -> 0)
+
+SetPlayerName(playerid,"이름"); // 플레이어의 이름을 변경하는함수
+
+GetPlayerMoney(playerid); // 
+
+GetPlayerState(playerid); // 
+
+GetPlayerIp(playerid,plrIP,sizeof(plrIP)); // 현재플레이어의 ip를 구하는함수 (new plrIP[24];) 
+
+GetPlayerPing(playerid); // 현재 플레이어의 핑(인터넷상태)를 구하는함수,응용해서 핑정리기제작
+
+GetPlayerWeapon(playerid); // 
+
+GetPlayerKeys(playerid,&keys,&updown,&leftright); //
+
+GetPlayerName(playerid,playername,MAX_PLAYER_NAME); // 플레이어의 이름을 구하는함수입니다 
+
+예제: new string[256]; new playername[24]; format(string,sizeof(string),"* %s 님 안녕하세요!",playername);
+
+SetPlayerTime(playerid,hour,minute); //
+
+GetPlayerTime(playerid,&hour,&minute); //
+
+TogglePlayerClock(playerid,toggle); // 싱글에서도 볼수있는 시계입니다
+
+SetPlayerWeather(playerid,9); // 모드의 날씨를 바꿔주는함수
+
+SetPlayerDisabledWeapons(38); // 여기에 적힌무기코드는 서버에 아예 패킷을 전송안합니다, 한마디로 38번이면 미니건이니 미니건꺼내고 아무리 다른사람한테 쏴봤자 다른사람눈에는 그무기가 안보이고 주먹으로 보입니다 ㅇㅅㅇ
+
+ForceClassSelection(playerid); //이거는 캐릭터선택창으로 보내는 함수입니다 (SetPlayerHealth(playerid,0);)한담에 이거적으면 캐릭터 선택창으로 보내집니다)
+
+SetPlayerWantedLevel(playerid,6); // 돈창밑에 별뜨던곳있죠? 그걸 변경하는함수입니다
+
+GetPlayerWantedLevel(playerid); // 
+
+PutPlayerInVehicle(playerid,vehicleID,1); // 플레이어를 차량에 탑승시킵니다 . 1번이 운전석 2번이 조수석 3번이 운전석뒤 4번이 조수석뒤
+
+GetPlayerVehicleID(playerid); //
+
+RemovePlayerFromVehicle(playerid); // 이함수는 현재 차량에 타고있는 플레이어를 강제로 내리게하는 함수입니다
+
+TogglePlayerControllable(playerid,1); // 플레이어를 묶거나 풀어주는함수
+
+PlayerPlaySound(playerid,1163,x,y,z); // 플레이어에게 사운드(음악)을 들려주는함수입니다
+
+ApplyAnimation(playerid,"BOX","bxwlko",4.1,0,1,1,1,1); // 플레이어의 애니메이션동작함수입니다(술을마시다거나 오줌을누거나 등등)
+
+ClearAnimations(playerid); // 이거는 애니메이션동작을 취소하는함수?
+
+GetPlayerSpecialAction(playerid); // 제트팩관련함수입니다 안티제트팩만들때 유용하겟죠?
+
+SetPlayerSpecialAction(playerid); // 흠... 제트팩을 주는함수?
+
+SetPlayerCheckpoint(playerid,1.1,1.1,1.1,5); // 체크포인트아시죠? 빨간원 ㅇㅅㅇ;; 그거 생성시키는함수입니다 5는 사이즈
+
+DisablePlayerCheckpoint(playerid); // 체크포인트를 없애는 함수입니다
+
+SetPlayerRaceCheckpoint(playerid,타입,XYZ좌표,다음xy좌표,다음레이싱체크포인트함수); // 레이싱체크포인트입니다
+
+DisablePlayerRaceCheckpoint(playerid); // 레이싱체크포인트를 삭제시키는 함수입니다
+
+SetPlayerWorldBounds(playerid,체크쿠드방식의 좌표(최대x좌표,최소x좌표,최대y좌표,최소y좌표); // 결계같은거에요 
+
+SetPlayerMarkerForPlayer(playerid,showplayerid,color); // 
+
+ShowPlayerNameTagForPlayer(playerid,showplayerid,show); // 
+
+SetPlayerMapIcon(playerid,0,1.1,1.1,1.1,55,0); // 이건 미니맵에 총포상이면 총모양으로 표시되는거잇죠? 그런 아이콘을 표시하는 함수인데 맵아이콘의번호(0번부터),xyz좌표,맵아이콘코드(어떤모양인지),색깔(보통 0번무색해염)으로 합니다
+ RemovePlayerMapIcon(playerid,0); // 맵아이콘번호 0번을 없앤다는뜻인데 한마디로 맵아이콘을 삭제시키는함수입니다
+
+SetPlayerCameraPos(playerid,1.1,1.1,1.1); // 캐릭터고를때 카메라좌표함수입니다 그니까 카메라가 비추는곳
+
+SetPlayerCameraLookAt(playerid,1.1,1.1,1.1); // 이것도 캐릭터고를때 나오는함수인데 pos랑 같은좌표적으시면됩니다
+
+AllowPlayerTeleport(playerid,allow); // 
+
+IsPlayerConnected(playerid); // 접속해있는플레이어만 가려내는 조건문

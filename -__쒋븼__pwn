@@ -1,0 +1,106 @@
+#include <a_samp>
+
+#pragma tabsize 0
+
+
+
+new bool:Bomb[MAX_PLAYERS];
+
+new playerbomb[MAX_PLAYERS];
+
+new Float:BombX[MAX_PLAYERS];
+
+new Float:BombY[MAX_PLAYERS];
+
+new Float:BombZ[MAX_PLAYERS];
+
+
+
+forward bombgo(playerid);
+
+
+
+public OnPlayerConnect(playerid)
+
+{
+
+Bomb[playerid] = false;
+
+playerbomb[playerid] = -1;
+
+BombX[playerid] = 0; BombY[playerid] = 0; BombZ[playerid] = 0;
+
+return 1;
+
+}
+
+public OnPlayerCommandText(playerid, cmdtext[])
+
+{
+
+if(strcmp(cmdtext, "/ÆøÁ×¤¡¤¡",true) == 0)
+
+{
+
+if(Bomb[playerid]) return SendClientMessage(playerid, 0xFF0000AA, " Áñ" ); // ´ë·« ÆøÁ× ½ð»óÅÂ..
+
+GetPlayerPos(playerid, BombX[playerid], BombY[playerid], BombZ[playerid]);
+
+SetTimerEx("bombgo", 5000, 0, "i", playerid);
+
+SendClientMessageToAll(0xFFFFFFAA, " ÆøÁ×ÀÌ´Ù ¾ÆÁdÁd ");
+
+Bomb[playerid] = true;
+
+playerbomb[playerid] = CreateObject(354, BombX[playerid], BombY[playerid], BombZ[playerid], 0, 0, 0);
+
+MoveObject(playerbomb[playerid], BombX[playerid], BombY[playerid], 100000, 15);
+
+return 1;
+
+}
+
+return SendClientMessage(playerid, 0xFF0000AA, " ±×°³ ¹¹¶ó³Ä ");
+
+}
+
+
+
+public bombgo(playerid)
+
+{
+
+new Float:xBOMBPOS;
+
+new Float:yBOMBPOS;
+
+new Float:zBOMBPOS;
+
+Bomb[playerid] = false;
+
+GetObjectPos(playerbomb[playerid], xBOMBPOS, yBOMBPOS, zBOMBPOS);
+
+CreateExplosion(xBOMBPOS+random(20), yBOMBPOS-random(20), zBOMBPOS, 7, 10000);
+
+CreateExplosion(xBOMBPOS-random(20), yBOMBPOS+random(20), zBOMBPOS, 7, 10000);
+
+CreateExplosion(xBOMBPOS+random(20), yBOMBPOS-random(20), zBOMBPOS, 7, 10000);
+
+CreateExplosion(xBOMBPOS-random(20), yBOMBPOS+random(20), zBOMBPOS, 7, 10000);
+
+CreateExplosion(xBOMBPOS+random(20), yBOMBPOS-random(20), zBOMBPOS, 7, 10000);
+
+CreateExplosion(xBOMBPOS-random(20), yBOMBPOS+random(20), zBOMBPOS, 7, 10000);
+
+CreateExplosion(xBOMBPOS+random(20), yBOMBPOS-random(20), zBOMBPOS, 7, 10000);
+
+CreateExplosion(xBOMBPOS-random(20), yBOMBPOS+random(20), zBOMBPOS, 7, 10000);
+
+DestroyObject(playerbomb[playerid]);
+
+playerbomb[playerid] = -1;
+
+}
+
+
+

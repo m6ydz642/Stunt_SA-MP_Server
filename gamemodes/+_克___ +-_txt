@@ -1,0 +1,10 @@
+if(strcmp(cmd, "/리붓", true) == 0)
+  {
+   if(IsPlayerConnected(playerid) && IsPlayerAdmin(playerid))
+   {
+     SendClientMessageToAll(0xF64D69AA,"잘생긴 어드민이 서버를 재시작 합니다.");
+     SendRconCommand("gmx");
+
+   }
+   return 1;
+  }

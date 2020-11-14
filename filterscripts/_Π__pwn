@@ -1,0 +1,83 @@
+#include <a_samp>
+#define COLOR_LIME		0x10F441AA
+
+new bombjumps = 0;
+forward bombjump();
+
+
+public OnFilterScriptInit()
+{
+	print("++++++++++++++++++++++++++++++++++++++++");
+	print(" ÆøÅº Á¡ÇÁ´ë");
+	print("++++++++++++++++++++++++++++++++++++++++");
+	
+	//ÆøÁ¡
+CreateObject(1632,1994.998,-1612.239,13.847,8.594,0.0,88.281);
+CreateObject(1632,1990.856,-1612.047,17.201,26.643,-0.859,88.281);
+CreateObject(1632,1988.479,-1612.028,20.195,38.675,-0.859,88.281);
+
+	SetTimer("bombjump",100,1);
+	return 1;
+}
+public OnPlayerCommandText(playerid, cmdtext[])
+{
+	if (strcmp("/boombon", cmdtext, true, 10) == 0)
+	{
+	if(!IsPlayerAdmin(playerid))
+	{
+	return 1;
+	}
+	if(bombjumps == 1)
+	{
+	bombjumps=0;
+	SendClientMessageToAll(COLOR_LIME," + ÆøÅºÁ¡ÇÁ´ë¸¦ Ä×½À´Ï´Ù"); // °°Àº ¸í·É¾î¸¦ ÇÑ¹ø´õ ÀÔ·ÂÇÒ¶§
+	return 1;
+	}
+	if(bombjumps == 0)
+	{
+	bombjumps=1;
+	SendClientMessageToAll(COLOR_LIME," + ÆøÅºÁ¡ÇÁ´ë¸¦ ²¯½À´Ï´Ù");
+	return 1;
+	}
+	}
+	return 0;
+}
+public bombjump()
+{
+	if(bombjumps == 0)
+	{
+		for(new i=0; i<MAX_PLAYERS; i++)
+		{
+			if(IsPlayerInAnyVehicle(i))
+			{//³¡
+				if(IsPlayerInArea(i,1988.4456,-1613.8732,1997.7148,-1610.4381)) // ÆøÅº Ã¼Å© Äíµå
+				//	if(IsPlayerInArea(i,1902.0886,885.2307,1910.2664,895.2675)) // ÆøÅº Ã¼Å© Äíµå
+				{
+					SetVehicleHealth(GetPlayerVehicleID(i),99999); // Â÷·®¿¡³ÊÁö´Â 99999·Î ¸¸µë
+					CreateExplosion(1984.9712,-1611.8302,23.8849,6,1000); // ÅÍÁö´Â ÁÂÇ¥
+					CreateExplosion(1985.2295,-1613.8408,24.0040,6,1000); //ÁÖ¸é Another place
+					CreateExplosion(1985.6514,-1610.2308,24.1645,6,1000);
+				//	CreateExplosion(1909.1783,893.9205,10.8203,6,1000);
+				//	CreateExplosion(1905.5834,891.1665,10.8203,6,1000);
+					}else
+					{
+					new Float:hp;
+					GetVehicleHealth(GetPlayerVehicleID(i),hp);
+					if(hp > 1000)SetVehicleHealth(GetPlayerVehicleID(i),1000);
+				}
+			}
+		}
+	}
+}
+
+//==========================================================================
+stock IsPlayerInArea(playerid, Float:x1, Float:y1, Float:x2, Float:y2)
+{
+ new Float:x, Float:y, Float:z;
+ GetPlayerPos(playerid, x, y, z);
+ if(x >= x1 && x <= x2 && y >= y1 && y <= y2) {
+  return 1;
+ }
+ return 0;
+}
+//==========================================================================

@@ -1,0 +1,28 @@
+#include <a_samp>
+
+#define COLOR_RED  0xFF000096
+#pragma tabsize 0
+
+public OnPlayerCommandText(playerid, cmdtext[])
+{
+if(strcmp(cmdtext, "/cf", true)==0)
+{
+if(IsPlayerInAnyVehicle(playerid))
+{
+new Float:PX, Float:PY, Float:PZ, Float:PA;
+GetPlayerPos(playerid, PX, PY, PZ);
+GetVehicleZAngle(GetPlayerVehicleID(playerid), PA);
+SetVehiclePos(GetPlayerVehicleID(playerid), PX, PY, PZ+1);
+SetVehicleZAngle(GetPlayerVehicleID(playerid), PA);
+SendClientMessage(playerid, COLOR_RED,"차량을 원상복구 ");
+PlayerPlaySound(playerid, 1085, 0.0, 0.0, 0.0);
+}
+else
+{
+SendClientMessage(playerid, COLOR_RED,"운전자전용.");
+}
+return 1;
+}
+ return 0;
+}
+
